@@ -12,6 +12,13 @@
     <relativePath>../bucket-parent</relativePath>
   </parent>
   <dependencies>
-    
+    <dependency>
+      <groupId>cn.koala</groupId>
+      <artifactId>koala-persistence</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.koala</groupId>
+      <artifactId>koala-mybatis</artifactId>
+    </dependency>
   </dependencies>
 </project>
