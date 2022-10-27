@@ -113,7 +113,8 @@ public interface ReportApi {
   /**
    * 根据id查询报表数据
    *
-   * @param id 报表id
+   * @param id         报表id
+   * @param parameters 查询参数
    * @return 报表
    */
   @Operation(summary = "根据id查询报表数据")
@@ -124,7 +125,7 @@ public interface ReportApi {
   @GetMapping("{id}/data")
   DataResponse<List<Map<String, Object>>> loadDataById(
     @PathVariable("id") String id,
-    @Parameter(hidden = true) @RequestParam Map<String, String> parameters
+    @RequestParam Map<String, String> parameters
   );
 
   class ReportPageResult extends DataResponse<Page<ReportEntity>> {

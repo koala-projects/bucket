@@ -9,9 +9,15 @@
            t.name,
            t.description,
            t.data_source_id as "dataSource.id",
+           d.code           as "dataSource.code",
+           d.name           as "dataSource.name",
+           d.url            as "dataSource.url",
+           d.username       as "dataSource.username",
+           d.password       as "dataSource.password",
            t.select_sql,
            t.config
     from t_report t
+           left join t_data_source d on d.id = t.data_source_id
   </sql>
 
   <select id="findAll" resultType="cn.koala.bucket.ReportEntity">

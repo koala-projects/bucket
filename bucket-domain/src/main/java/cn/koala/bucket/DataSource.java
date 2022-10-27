@@ -3,10 +3,6 @@ package cn.koala.bucket;
 import cn.koala.persistence.Codeable;
 import cn.koala.persistence.Idable;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 /**
  * 数据源
  *
@@ -33,14 +29,4 @@ public interface DataSource extends Idable<String>, Codeable {
    * @return 数据库密码
    */
   String getPassword();
-
-  /**
-   * 获取数据库连接
-   *
-   * @return 数据库连接
-   * @throws SQLException SQLException
-   */
-  default Connection getConnection() throws SQLException {
-    return DriverManager.getConnection(getUrl(), getUsername(), getPassword());
-  }
 }

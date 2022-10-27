@@ -20,6 +20,16 @@
         <artifactId>bucket-domain</artifactId>
         <version>${revision}</version>
       </dependency>
+      <dependency>
+        <groupId>cn.koala</groupId>
+        <artifactId>bucket-api</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.koala</groupId>
+        <artifactId>bucket-spring-boot-starter</artifactId>
+        <version>${revision}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

@@ -1,5 +1,6 @@
 package cn.koala.bucket.mybatis;
 
+import cn.koala.bucket.DataSource;
 import cn.koala.bucket.JdbcHelper;
 import cn.koala.bucket.Report;
 import cn.koala.bucket.ReportService;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,12 @@ public class ReportServiceImpl extends AbstractUUIDCrudService<Report> implement
       return new ArrayList<>();
     }
     Report report = optionalReport.get();
+    DataSource dataSource = report.getDataSource();
     try {
-      return JdbcHelper.query(report.getDataSource().getConnection(), parseSql(report.getSelectSql(), parameters));
+      return JdbcHelper.query(
+        DriverManager.getConnection(dataSource.getUrl(), dataSource.getUsername(), dataSource.getPassword()),
+        parseSql(report.getSelectSql(), parameters)
+      );
     } catch (SQLException e) {
       throw new RuntimeException("查询数据失败", e);
     }

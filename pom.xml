@@ -10,7 +10,9 @@
 
   <modules>
     <module>bucket-api</module>
+    <module>bucket-application</module>
     <module>bucket-domain</module>
     <module>bucket-parent</module>
+    <module>bucket-spring-boot-starter</module>
   </modules>
 </project>
