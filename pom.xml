@@ -9,7 +9,8 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>bucket-api</module>
     <module>bucket-domain</module>
-	<module>bucket-parent</module>
+    <module>bucket-parent</module>
   </modules>
 </project>
