@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.bucket.mybatis.ReportRepository">
+
+  <sql id="selectReport">
+    select t.id,
+           t.code,
+           t.name,
+           t.description,
+           t.data_source_id as "dataSource.id",
+           t.select_sql,
+           t.config
+    from t_report t
+  </sql>
+
+  <select id="findAll" resultType="cn.koala.bucket.ReportEntity">
+    <include refid="selectReport"/>
+    <where>
+      <if test="parameters.code != null and parameters.code != ''">
+        t.code = #{parameters.code}
+      </if>
+      <if test="parameters.name != null and parameters.name != ''">
+        and t.name = #{parameters.name}
+      </if>
+      <if test="parameters.dataSourceId != null and parameters.dataSourceId != ''">
+        and t.data_source_id = #{parameters.dataSourceId}
+      </if>
+    </where>
+  </select>
+
+  <select id="findById" resultType="cn.koala.bucket.ReportEntity">
+    <include refid="selectReport"/>
+    where t.id = #{id}
+  </select>
+
+  <insert id="add" parameterType="cn.koala.bucket.ReportEntity">
+    insert into t_report
+    values (#{id}, #{code}, #{name}, #{description}, #{dataSource.id}, #{selectSql}, #{config});
+  </insert>
+
+  <update id="update" parameterType="cn.koala.bucket.ReportEntity">
+    update t_report
+    set code           = #{code},
+        name           = #{name},
+        description    = #{description},
+        data_source_id = #{dataSource.id},
+        select_sql     = #{selectSql},
+        config         = #{config}
+    where id = #{id};
+  </update>
+
+  <update id="delete" parameterType="cn.koala.bucket.ReportEntity">
+    delete
+    from t_report
+    where id = #{id}
+  </update>
+</mapper>

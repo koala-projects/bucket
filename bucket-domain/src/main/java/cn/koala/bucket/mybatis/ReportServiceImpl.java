@@ -33,13 +33,13 @@ public class ReportServiceImpl extends AbstractUUIDCrudService<Report> implement
     }
     Report report = optionalReport.get();
     try {
-      return JdbcHelper.query(report.getDataSource().getConnection(), generateSql(report.getSql(), parameters));
+      return JdbcHelper.query(report.getDataSource().getConnection(), parseSql(report.getSelectSql(), parameters));
     } catch (SQLException e) {
-      throw new RuntimeException("SQL查询失败", e);
+      throw new RuntimeException("查询数据失败", e);
     }
   }
 
-  protected String generateSql(String sql, Map<String, String> parameters) {
+  protected String parseSql(String sql, Map<String, String> parameters) {
     String result = sql;
     for (String key : parameters.keySet()) {
       result = result.replace(key, parameters.get(key));

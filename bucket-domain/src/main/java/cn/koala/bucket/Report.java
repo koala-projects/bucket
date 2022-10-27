@@ -21,7 +21,7 @@ public interface Report extends Idable<String>, Codeable {
    *
    * @return SQL
    */
-  String getSql();
+  String getSelectSql();
 
   /**
    * 获取报表配置

@@ -18,6 +18,10 @@
     </dependency>
     <dependency>
       <groupId>cn.koala</groupId>
+      <artifactId>koala-swagger</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.koala</groupId>
       <artifactId>koala-mybatis</artifactId>
     </dependency>
   </dependencies>
